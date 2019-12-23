@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity // This tells Hibernate to make a table out of this class
 public class Questions {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String title;
@@ -37,6 +37,10 @@ public class Questions {
 
     public void setDescription(String email) {
         this.description = email;
+    }
+
+    public String toString() {
+        return "[Question with title '" + getTitle() + "' and descripton '" + getDescription() + "']";
     }
 
 
