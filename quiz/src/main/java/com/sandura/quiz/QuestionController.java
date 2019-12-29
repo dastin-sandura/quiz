@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,8 +15,7 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-@Controller // This means that this class is a Controller
-//@RequestMapping(path = "/demo") // This means URL's start with /demo (after Application path)
+@Controller
 public class QuestionController {
 
     private static final Logger log = LoggerFactory.getLogger(QuestionController.class);
@@ -28,8 +26,7 @@ public class QuestionController {
 
     @PostMapping(path = "/add") // Map ONLY POST Requests
     public @ResponseBody
-    String addNewUser(@RequestParam String title
-            , @RequestParam String description) {
+    String addNewQuestion(@RequestParam String title, @RequestParam String description) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
@@ -45,34 +42,25 @@ public class QuestionController {
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<Question> getAllUsers() {
+    Iterable<Question> getAllQuestions() {
         // This returns a JSON or XML with the users
-        log.info("Returning all users");
-
+        log.info("Returning all questions");
         return questionRepository.findAll();
     }
 
-    @GetMapping(path = "/generate-data")
-    private void generateNewDummyDataQuestion() {
-        ArrayList<Question> questions = new ArrayList<>();
-        questionRepository.saveAll(questions);
-    }
-
-    @RequestMapping("generate")
-    public String generateQuiz(Model model) {
+    @GetMapping(path = "populate")
+    public String populateDatabaseWithQuestionsFromFile(Model model) {
         final ArrayList<Question> questions = new ArrayList<>();
         String pathname = "./src/main/resources/questions.csv";
         File source = new File(pathname);
         Question tmp;
         try {
-
             Scanner scanner = new Scanner(source);
             scanner.useDelimiter("\n");
-            while(scanner.hasNext()){
-
+            while (scanner.hasNext()) {
                 String questionFromFile = scanner.next();
                 log.info(questionFromFile);
-                tmp =  new Question();
+                tmp = new Question();
                 String[] split = questionFromFile.split(",");
                 tmp.setTitle(split[0]);
                 tmp.setDescription(split[1]);
@@ -84,12 +72,7 @@ public class QuestionController {
         }
         questionRepository.saveAll(questions);
         model.addAttribute("pathname", source.getAbsoluteFile());
-        return "generate";
+        return "populate";
     }
 
-//    @RequestMapping("/greeting")
-//    public String greeting(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
-//        model.addAttribute("name", name);
-//        return "greeting";
-//    }
 }
