@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Scanner;
 
 @Controller // This means that this class is a Controller
 //@RequestMapping(path = "/demo") // This means URL's start with /demo (after Application path)
@@ -31,7 +33,7 @@ public class QuestionController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        Questions n = new Questions();
+        Question n = new Question();
         n.setTitle(title);
         n.setDescription(description);
         questionRepository.save(n);
@@ -43,7 +45,7 @@ public class QuestionController {
 
     @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable<Questions> getAllUsers() {
+    Iterable<Question> getAllUsers() {
         // This returns a JSON or XML with the users
         log.info("Returning all users");
 
@@ -52,13 +54,42 @@ public class QuestionController {
 
     @GetMapping(path = "/generate-data")
     private void generateNewDummyDataQuestion() {
-        ArrayList<Questions> questions = new ArrayList<>();
+        ArrayList<Question> questions = new ArrayList<>();
         questionRepository.saveAll(questions);
     }
 
-    @RequestMapping("/greeting")
-    public String greeting(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
-        model.addAttribute("name", name);
-        return "greeting";
+    @RequestMapping("generate")
+    public String generateQuiz(Model model) {
+        final ArrayList<Question> questions = new ArrayList<>();
+        String pathname = "./src/main/resources/questions.csv";
+        File source = new File(pathname);
+        Question tmp;
+        try {
+
+            Scanner scanner = new Scanner(source);
+            scanner.useDelimiter("\n");
+            while(scanner.hasNext()){
+
+                String questionFromFile = scanner.next();
+                log.info(questionFromFile);
+                tmp =  new Question();
+                String[] split = questionFromFile.split(",");
+                tmp.setTitle(split[0]);
+                tmp.setDescription(split[1]);
+                questions.add(tmp);
+            }
+        } catch (FileNotFoundException fileNotFoundException) {
+            log.error("Exception occured while reading file {}", pathname);
+            log.error(fileNotFoundException.toString());
+        }
+        questionRepository.saveAll(questions);
+        model.addAttribute("pathname", source.getAbsoluteFile());
+        return "generate";
     }
+
+//    @RequestMapping("/greeting")
+//    public String greeting(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
+//        model.addAttribute("name", name);
+//        return "greeting";
+//    }
 }
