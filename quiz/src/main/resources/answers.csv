@@ -1,0 +1,8 @@
+1, Unit testing, true
+1, Integration testing, true
+1, Economic testing, false
+1, Regex testing, false
+2, boolean, true
+2, Boolean, true
+2, Number, false
+2, Character, false

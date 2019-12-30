@@ -1,9 +1,7 @@
 package com.sandura.quiz;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
 public class Question {
@@ -11,9 +9,20 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String title;
+    private String category;
+
+    public List<Answer> getAnswerList() {
+        return answerList;
+    }
+
+    public void setAnswerList(List<Answer> answerList) {
+        this.answerList = answerList;
+    }
 
     private String description;
+
+    @OneToMany
+    private List<Answer> answerList;
 
     public Integer getId() {
         return id;
@@ -23,12 +32,12 @@ public class Question {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getCategory() {
+        return category;
     }
 
-    public void setTitle(String name) {
-        this.title = name;
+    public void setCategory(String name) {
+        this.category = name;
     }
 
     public String getDescription() {
@@ -40,7 +49,7 @@ public class Question {
     }
 
     public String toString() {
-        return "[Question with title '" + getTitle() + "' and descripton '" + getDescription() + "']";
+        return "[Question with title '" + getCategory() + "' and descripton '" + getDescription() + "']";
     }
 
 
