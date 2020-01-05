@@ -1,6 +1,7 @@
 package com.sandura.quiz;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity // This tells Hibernate to make a table out of this class
@@ -11,18 +12,10 @@ public class Question {
 
     private String category;
 
-    public List<Answer> getAnswerList() {
-        return answerList;
-    }
-
-    public void setAnswerList(List<Answer> answerList) {
-        this.answerList = answerList;
-    }
-
     private String description;
 
     @OneToMany
-    private List<Answer> answerList;
+    private List<Answer> answerList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -46,6 +39,21 @@ public class Question {
 
     public void setDescription(String email) {
         this.description = email;
+    }
+
+    public List<Answer> getAnswerList() {
+        return answerList;
+    }
+
+    public void setAnswerList(List<Answer> answerList) {
+        this.answerList = answerList;
+    }
+
+    public void addAnswer(Answer newAnswer) {
+        if (!this.answerList.contains(newAnswer)) {
+            this.answerList.add(newAnswer);
+            newAnswer.setQuestionReference(this);
+        }
     }
 
     public String toString() {

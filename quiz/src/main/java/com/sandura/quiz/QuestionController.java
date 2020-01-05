@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
 
 @Controller
 public class QuestionController {
@@ -50,6 +48,35 @@ public class QuestionController {
         // This returns a JSON or XML with the users
         log.info("Returning all questions");
         return questionRepository.findAll();
+    }
+
+    @GetMapping(path = "/alltesting")
+    public @ResponseBody
+    Set<Question> getAllTestingQuestions(@RequestParam int questionsCount, @RequestParam String category) {
+        if(questionsCount == 0) {
+            questionsCount = 2;
+        }
+        if(category == null) {
+            category = "Testing";
+        }
+        ArrayList<String> selectedCategories = new ArrayList<>();
+        selectedCategories.add(category);
+
+        Iterable<Question> all = questionRepository.findAll();
+//        if (((ArrayList) all).size() == 0) {
+//            populateDatabaseWithQuestionsFromFile(null);
+//        }
+        Set<Question> allRandomOrder = new HashSet<>();
+        allRandomOrder.addAll(((ArrayList)all));
+        Set<Question> onlyTesting = new HashSet<>();
+        for (Question question : allRandomOrder) {
+            if (selectedCategories.contains(question.getCategory()) && questionsCount > 0) {
+                onlyTesting.add(question);
+                questionsCount -=1;
+            }
+        }
+
+        return onlyTesting;
     }
 
     @GetMapping(path = "populate")
@@ -109,7 +136,9 @@ public class QuestionController {
             log.error("Exception occured while reading file {}", questionsCsvFileDirectory);
             log.error(e.toString());
         }
-        model.addAttribute("pathname", questionsCsvFile.getAbsoluteFile());
+        if (model != null) {
+            model.addAttribute("pathname", questionsCsvFile.getAbsoluteFile());
+        }
         return "populate";
     }
 

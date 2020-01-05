@@ -6,6 +6,12 @@
 </head>
 <body>
 <p th:text="'Data was read from file ' + ${pathname} + ' and it was saved in the database.'"/>
-<a href="/all">Check the data here.</a>
+<div>
+    <a href="/all">Check all data here.</a>
+</div>
+<div>
+    <a href="/alltesting?questionsCount=3&category=Java">Check items from <i>Java</i> category here.</a>
+</div>
+
 </body>
 </html>

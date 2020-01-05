@@ -1,6 +1,8 @@
 package com.sandura.quiz;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @JsonIgnore
     @ManyToOne
     private Question questionReference;
 
@@ -31,6 +34,7 @@ public class Answer {
 
     public void setQuestionReference(Question questionReference) {
         this.questionReference = questionReference;
+        questionReference.addAnswer(this);
     }
 
     public String getDescription() {
