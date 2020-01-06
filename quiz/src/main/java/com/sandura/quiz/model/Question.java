@@ -1,16 +1,19 @@
-package com.sandura.quiz;
+package com.sandura.quiz.model;
+
+import com.sandura.quiz.model.Answer;
+import com.sandura.quiz.question.QuestionCategoryEnum;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity // This tells Hibernate to make a table out of this class
+@Entity
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String category;
+    private QuestionCategoryEnum category;
 
     private String description;
 
@@ -25,11 +28,11 @@ public class Question {
         this.id = id;
     }
 
-    public String getCategory() {
+    public QuestionCategoryEnum getCategory() {
         return category;
     }
 
-    public void setCategory(String name) {
+    public void setCategory(QuestionCategoryEnum name) {
         this.category = name;
     }
 

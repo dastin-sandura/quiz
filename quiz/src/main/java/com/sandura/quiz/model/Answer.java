@@ -1,4 +1,4 @@
-package com.sandura.quiz;
+package com.sandura.quiz.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,19 +45,20 @@ public class Answer {
         this.description = description;
     }
 
-    public Boolean getCorrect() {
+
+    public Boolean getIsCorrect() {
         return isCorrect;
     }
 
-    public Boolean isCorrect() {
-        return isCorrect;
+    public void setIsCorrect(Boolean isCorrect) {
+        this.isCorrect = isCorrect;
     }
 
     public void setCorrectness(Boolean correct) {
         isCorrect = correct;
     }
 
-    public String toString(){
+    public String toString() {
         return "[Answer from category ]";
     }
 }
