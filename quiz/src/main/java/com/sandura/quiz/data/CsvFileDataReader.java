@@ -3,7 +3,6 @@ package com.sandura.quiz.data;
 import com.sandura.quiz.repository.QuestionRepository;
 import com.sandura.quiz.model.Answer;
 import com.sandura.quiz.model.Question;
-import com.sandura.quiz.question.QuestionCategoryEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class CsvFileDataReader {
             log.info(questionFromFile);
             tmpQuestion = new Question();
             String[] split = questionFromFile.split(",");
-            tmpQuestion.setCategory(QuestionCategoryEnum.valueOf(split[1]));
+            tmpQuestion.setCategory(split[1]);
             tmpQuestion.setDescription(split[2]);
             questions.add(tmpQuestion);
         }

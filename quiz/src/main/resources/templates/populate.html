@@ -7,10 +7,13 @@
 <body>
 <p th:text="'Data was read from file ' + ${pathname} + ' and it was saved in the database.'"/>
 <div>
-    <a href="/all">Check all data here.</a>
+    <a href="/all">Check all data retrieved via <i>Hibernate</i>.</a>
 </div>
 <div>
     <a href="/alltesting?questionsCount=3&category=Java">Check items from <i>Java</i> category here.</a>
+</div>
+<div>
+    <a href="/allsql">Check all data retrieved via JdbcTemplate.</a>
 </div>
 
 </body>

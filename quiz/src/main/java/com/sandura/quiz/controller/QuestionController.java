@@ -1,8 +1,8 @@
 package com.sandura.quiz.controller;
 
+import com.sandura.quiz.repository.CustomSQLQuestionRepository;
 import com.sandura.quiz.repository.QuestionRepository;
 import com.sandura.quiz.model.Question;
-import com.sandura.quiz.question.QuestionCategoryEnum;
 import com.sandura.quiz.service.AnswerService;
 import com.sandura.quiz.service.QuestionService;
 import org.slf4j.Logger;
@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Set;
 
 @Controller
@@ -38,11 +37,14 @@ public class QuestionController {
 
     public static final String ANSWERS_CSV_FILE_DIRECTORY = "./src/main/resources/answers.csv";
 
+    @Autowired
+    private CustomSQLQuestionRepository customSQLQuestionRepository;
+
     @PostMapping(path = "/add")
     public @ResponseBody
     String addNewQuestion(@RequestParam String title, @RequestParam String description) {
         Question n = new Question();
-        n.setCategory(QuestionCategoryEnum.valueOf(title));
+        n.setCategory(title);
         n.setDescription(description);
         questionRepository.save(n);
         log.info("Saving Question " + n + " in the database.");
@@ -54,6 +56,13 @@ public class QuestionController {
     Iterable<Question> getAllQuestions() {
         log.info("Returning all questions");
         return questionRepository.findAll();
+    }
+
+    @GetMapping(path = "/allsql")
+    public @ResponseBody Iterable<Question> getAllQuestionWithSQL(){
+        log.info("Returning all questions via SQL from JdbcTemplate");
+        return customSQLQuestionRepository.findAll();
+
     }
 
     @GetMapping(path = "/alltesting")

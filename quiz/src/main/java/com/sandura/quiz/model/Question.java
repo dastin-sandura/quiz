@@ -1,8 +1,5 @@
 package com.sandura.quiz.model;
 
-import com.sandura.quiz.model.Answer;
-import com.sandura.quiz.question.QuestionCategoryEnum;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,12 +10,20 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private QuestionCategoryEnum category;
+    private String category;
 
     private String description;
 
     @OneToMany
     private List<Answer> answerList = new ArrayList<>();
+
+    public Question() {
+    }
+
+    public Question(String category, String description) {
+        this.category = category;
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;
@@ -28,11 +33,11 @@ public class Question {
         this.id = id;
     }
 
-    public QuestionCategoryEnum getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(QuestionCategoryEnum name) {
+    public void setCategory(String name) {
         this.category = name;
     }
 
