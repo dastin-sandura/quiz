@@ -1,0 +1,15 @@
+{
+  "properties": [
+    {
+      "name": "answer.data.csv.relative-file-path",
+      "type": "java.lang.String",
+      "description": "Relative path to csv file which contains information about answers. Used as starting data. However, it is tightly coupled with the Questions data via the foreign reference."
+    },
+    {
+      "name": "question.data.csv.relative-file-path",
+      "type": "java.lang.String",
+      "description": "Relative path to csv file which contains information about Questions. Used as an independent set of starting data."
+
+    }
+  ]
+}

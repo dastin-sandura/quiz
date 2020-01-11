@@ -1,13 +1,14 @@
 package com.sandura.quiz.controller;
 
 import com.sandura.quiz.repository.CustomSQLQuestionRepository;
-import com.sandura.quiz.repository.QuestionRepository;
+import com.sandura.quiz.repository.CrudQuestionRepository;
 import com.sandura.quiz.model.Question;
 import com.sandura.quiz.service.AnswerService;
 import com.sandura.quiz.service.QuestionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +26,7 @@ public class QuestionController {
     private static final Logger log = LoggerFactory.getLogger(QuestionController.class);
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private CrudQuestionRepository crudQuestionRepository;
 
     @Autowired
     AnswerService answerService;
@@ -33,9 +34,11 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    public final String QUESTIONS_CSV_FILE_DIRECTORY = "./src/main/resources/questions.csv";
+    @Value("${question.data.csv.relative-file-path}")
+    private String QUESTIONS_CSV_FILE_DIRECTORY;
 
-    public static final String ANSWERS_CSV_FILE_DIRECTORY = "./src/main/resources/answers.csv";
+    @Value("${answer.data.csv.relative-file-path}")
+    private  String ANSWERS_CSV_FILE_DIRECTORY;
 
     @Autowired
     private CustomSQLQuestionRepository customSQLQuestionRepository;
@@ -46,7 +49,7 @@ public class QuestionController {
         Question n = new Question();
         n.setCategory(title);
         n.setDescription(description);
-        questionRepository.save(n);
+        crudQuestionRepository.save(n);
         log.info("Saving Question " + n + " in the database.");
         return "Saved";
     }
@@ -55,7 +58,7 @@ public class QuestionController {
     public @ResponseBody
     Iterable<Question> getAllQuestions() {
         log.info("Returning all questions");
-        return questionRepository.findAll();
+        return crudQuestionRepository.findAll();
     }
 
     @GetMapping(path = "/allsql")

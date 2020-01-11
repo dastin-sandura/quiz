@@ -1,6 +1,6 @@
 package com.sandura.quiz.service;
 
-import com.sandura.quiz.repository.QuestionRepository;
+import com.sandura.quiz.repository.CrudQuestionRepository;
 import com.sandura.quiz.data.CsvFileDataReader;
 import com.sandura.quiz.model.Question;
 import org.slf4j.Logger;
@@ -21,14 +21,14 @@ public class QuestionService {
     private static final Logger log = LoggerFactory.getLogger(QuestionService.class);
 
     @Autowired
-    QuestionRepository questionRepository;
+    CrudQuestionRepository crudQuestionRepository;
 
     @Autowired
     CsvFileDataReader csvFileDataReader;
 
     public Set<Question> getQuestionsByCategory(int questionsCount, ArrayList<String> selectedCQuestionCategories) {
         Set<Question> onlyTesting = new HashSet<>();
-        for (Question question : questionRepository.findAll()) {
+        for (Question question : crudQuestionRepository.findAll()) {
             if (selectedCQuestionCategories.contains(question.getCategory()) && questionsCount > 0) {
                 onlyTesting.add(question);
                 questionsCount -= 1;
@@ -40,7 +40,7 @@ public class QuestionService {
     public void readAndPersistQuestions(File questionsCsvFile) {
         try {
             List<Question> questions = csvFileDataReader.readQuestionsFromFile(questionsCsvFile);
-            questionRepository.saveAll(questions);
+            crudQuestionRepository.saveAll(questions);
         } catch (FileNotFoundException fileNotFoundException) {
             log.error("FileNotFoundException occurred while reading data from files.");
             log.error(fileNotFoundException.toString());

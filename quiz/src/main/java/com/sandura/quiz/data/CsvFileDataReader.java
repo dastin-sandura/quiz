@@ -1,6 +1,6 @@
 package com.sandura.quiz.data;
 
-import com.sandura.quiz.repository.QuestionRepository;
+import com.sandura.quiz.repository.CrudQuestionRepository;
 import com.sandura.quiz.model.Answer;
 import com.sandura.quiz.model.Question;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ public class CsvFileDataReader {
     private static final Logger log = LoggerFactory.getLogger(CsvFileDataReader.class);
 
     @Autowired
-    private QuestionRepository questionRepository;
+    private CrudQuestionRepository crudQuestionRepository;
 
     public ArrayList<Question> readQuestionsFromFile(File questionsCsvFile) throws FileNotFoundException {
         log.info("Reading Question data from file " + questionsCsvFile);
@@ -57,7 +57,7 @@ public class CsvFileDataReader {
             String answerDescription = answerSplit[1];
             Boolean answerCorrectness = new Boolean(answerSplit[2]);
             Question relatedQuestion;
-            Optional<Question> relateQuestionOptional = questionRepository.findById(new Integer(idOfRelatedQuestion));
+            Optional<Question> relateQuestionOptional = crudQuestionRepository.findById(new Integer(idOfRelatedQuestion));
             if (relateQuestionOptional.isPresent()) {
                 relatedQuestion = relateQuestionOptional.get();
             } else {
