@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.*;
 
 @Component
-public class CustomSQLQuestionRepository implements QuestionRepository {
+public class CustomSQLQuestionRepository{
 
     private static final Logger log = LoggerFactory.getLogger(CustomSQLQuestionRepository.class);
 
@@ -64,50 +64,4 @@ public class CustomSQLQuestionRepository implements QuestionRepository {
         return questions;
     }
 
-    @Override
-    public Iterable<Question> findAllById(Iterable<Integer> integers) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void deleteById(Integer integer) {
-    }
-
-    @Override
-    public void delete(Question entity) {
-    }
-
-    @Override
-    public void deleteAll(Iterable<? extends Question> entities) {
-    }
-
-    @Override
-    public void deleteAll() {
-    }
-
-    public Question save(Question n) {
-        return null;
-    }
-
-    public void saveAll(List<Question> questions) {
-    }
-
-    @Override
-    public <S extends Question> Iterable<S> saveAll(Iterable<S> entities) {
-        return null;
-    }
-
-    public Optional<Question> findById(Integer integer) {
-        return null;
-    }
-
-    @Override
-    public boolean existsById(Integer integer) {
-        return false;
-    }
 }
