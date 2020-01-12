@@ -11,7 +11,6 @@ public class Quiz {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
 
-
     private String name;
 
     @OneToMany
@@ -38,7 +37,6 @@ public class Quiz {
             questionList.add(q);
         }
     }
-
 
     public Integer getId() {
         return Id;
