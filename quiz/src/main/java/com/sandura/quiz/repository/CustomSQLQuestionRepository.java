@@ -37,7 +37,7 @@ public class CustomSQLQuestionRepository{
                     " answer.id AS ANSWER_ID, answer.description as answer_description, answer.is_correct " +
                     "FROM QUESTION INNER JOIN answer ON question.id = answer.question_reference_id";
             Map<Integer, Question> existingQuestions = new HashMap<>();
-            questions = jdbcTemplate.query(sqlWithJoin,
+            jdbcTemplate.query(sqlWithJoin,
                     (rs, rownum) -> {
                         Question tmpQuestion;
                         Integer databaseQuestionId = rs.getInt("QUESTION_ID");
@@ -58,6 +58,7 @@ public class CustomSQLQuestionRepository{
                         return tmpQuestion;
                     }
             );
+            questions.addAll(existingQuestions.values());
         } catch (Exception e) {
             log.error("Exception while reading all questions data from database.");
         }
