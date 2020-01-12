@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
-public class CustomSQLQuestionRepository{
+public class CustomSQLQuestionRepository {
 
     private static final Logger log = LoggerFactory.getLogger(CustomSQLQuestionRepository.class);
 
@@ -65,4 +68,40 @@ public class CustomSQLQuestionRepository{
         return questions;
     }
 
+    public List<Question> findByCategory(String category) {
+        List<Question> questions = new ArrayList();
+
+        String sqlWithJoin = "SELECT question.id AS QUESTION_ID, question.category," +
+                " question.description as question_description," +
+                " answer.id AS ANSWER_ID, answer.description as answer_description, answer.is_correct " +
+                "FROM QUESTION INNER JOIN answer ON question.id = answer.question_reference_id " +
+                "WHERE question.category = '" + category + "'";
+        Map<Integer, Question> existingQuestions = new HashMap<>();
+
+        jdbcTemplate.query(sqlWithJoin,
+                (rs, rownum) -> {
+                    Question tmpQuestion;
+                    Integer databaseQuestionId = rs.getInt("QUESTION_ID");
+                    if (existingQuestions.containsKey(databaseQuestionId)) {
+                        tmpQuestion = existingQuestions.get(databaseQuestionId);
+                    } else {
+                        tmpQuestion = new Question();
+                        existingQuestions.put(databaseQuestionId, tmpQuestion);
+                        tmpQuestion.setId(databaseQuestionId);
+                        tmpQuestion.setCategory(rs.getString("CATEGORY"));
+                        tmpQuestion.setDescription(rs.getString("QUESTION_DESCRIPTION"));
+                    }
+                    Answer tmpAnswer = new Answer();
+                    tmpAnswer.setId(rs.getInt("ANSWER_ID"));
+                    tmpAnswer.setDescription(rs.getString("ANSWER_DESCRIPTION"));
+                    tmpAnswer.setIsCorrect(rs.getBoolean("IS_CORRECT"));
+                    tmpQuestion.addAnswer(tmpAnswer);
+                    return tmpQuestion;
+                }
+        );
+
+        questions.addAll(existingQuestions.values());
+
+        return questions;
+    }
 }
