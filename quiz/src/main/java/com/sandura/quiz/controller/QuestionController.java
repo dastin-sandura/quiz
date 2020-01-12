@@ -78,14 +78,14 @@ public class QuestionController {
     }
 
     @GetMapping(path = "populate")
-    public String populateDatabaseWithQuestionsFromFile(Model model) {
+    public String populateDatabaseWithQuestionsFromFile() {
         File questionsCsvFile = new File(QUESTIONS_CSV_FILE_DIRECTORY);
         File answersCsvFile = new File(ANSWERS_CSV_FILE_DIRECTORY);
+
+        //TODO add a software pattern which will remove the need to pass the file paths.
+        //TODO Probably strategy or command pattern
         questionService.readAndPersistQuestions(questionsCsvFile);
         answerService.readAndPersistAnswers(answersCsvFile);
-        if (model != null) {
-            model.addAttribute("pathname", questionsCsvFile.getAbsoluteFile());
-        }
         return "populate";
     }
 

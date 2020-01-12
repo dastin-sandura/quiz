@@ -5,12 +5,12 @@
     <title>Title</title>
 </head>
 <body>
-<p th:text="'Data was read from file ' + ${pathname} + ' and it was saved in the database.'"/>
+<p>Database was populated with starter data read from CSV file.</p>
 <div>
     <a href="/all">Check all data retrieved via <i>Hibernate</i>.</a>
 </div>
 <div>
-    <a href="/alltesting?questionsCount=3&category=Java">Check items from <i>Java</i> category here.</a>
+    <a href="/alltesting?questionsCount=3&category=Java">Check 3 questions from <i>Java</i> category here.</a>
 </div>
 <div>
     <a href="/allsql">Check all data retrieved via JdbcTemplate.</a>
