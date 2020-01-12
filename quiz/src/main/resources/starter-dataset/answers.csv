@@ -1,0 +1,20 @@
+1,Unit testing,true
+1,Integration testing,true
+1,Economic testing,false
+1,Regex testing,false
+2,boolean,true
+2,Boolean,true
+2,Number,false
+2,Character,false
+3,@Component,true
+3,@Service,false
+4,org.springframework.jdbc.core.JdbcTemplate,true
+4,org.springframework.jdbc.JdbcTemplate,false
+5,void,true
+5,null,false
+6,initiate.sh,false
+6,start.sh,true
+7,80,false
+7,8080,true
+8,Class field,false
+8,Method,true

@@ -1,0 +1,8 @@
+1,Tests,Which of these are correct types of software tests?
+2,Java,What are default data types available in Java?
+3,Spring,Which annotation tells spring to include a Java class in a Spring Bean (Component)?
+4,Spring,What class is used for executing queries on database (JdbcTemplate)?
+5,Java,What is needed before the method declaration to indicate that this method returns nothing (void)?
+6,Tomcat,What is the name of script that initiates the Tomcat server (start.sh)?
+7,Tomcat,What is the default port for running tomcat (8080)?
+8,AOP,To which item can you attach an aspect in Spring (method)?
