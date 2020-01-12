@@ -35,7 +35,6 @@ public class CsvStarterDatasetImporter implements StarterDatasetImporter {
         questionService.readAndPersistQuestions(questionsCsvFile);
         answerService.readAndPersistAnswers(answersCsvFile);
         log.info("Populating database with CSV data finished.");
-
     }
 
 }
