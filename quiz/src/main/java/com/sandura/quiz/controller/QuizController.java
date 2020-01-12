@@ -41,7 +41,7 @@ public class QuizController {
     }
 
     @GetMapping(path = "generate")
-    public ResponseEntity<Quiz> generateQuiz(@RequestParam String questionCategories) {
+    public ResponseEntity<Quiz> generateQuiz(@RequestParam String questionCategories, @RequestParam String quizName) {
         log.info("Parameter received {}", questionCategories);
         Quiz generatedQuiz = new Quiz();
         generatedQuiz.setName("Quiz generated via Web");
