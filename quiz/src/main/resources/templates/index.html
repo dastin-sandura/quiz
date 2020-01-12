@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Quizzes mania</h1>
+<h2>This is a quiz generator!. In the future, you will be able to generate a quiz.</h2>
+<p>At the moment you can:</p>
+
+<h2>Quizzes</h2>
+<div>
+    <a href="/quiz/generate?questionCategories=Java,Tests&quizName=QuizCreatedViaWeb">Generate a quiz from questions
+        about <i>Java</i> and <i>Tests</i> with name <i>QuizCreatedViaWeb</i>.</a>
+</div>
+
+<h2>Questions</h2>
+<div>
+    <a href="question/all">Check all questions via <i>Hibernate</i> repository.</a>
+</div>
+<div>
+    <a href="question/alltesting?questionsCount=2&category=Java">Check 2 questions from <i>Java</i> category.</a>
+</div>
+<div>
+    <a href="question/allsql">Check all questions retrieved via JdbcTemplate execution of SQL query.</a>
+</div>
+
+<h2>Answers</h2>
+<div>
+    <a href="#"><b>TODO</b> Check all Answers via <i>Hibernate</i> repository.</a>
+</div>
+
+</body>
+</html>
