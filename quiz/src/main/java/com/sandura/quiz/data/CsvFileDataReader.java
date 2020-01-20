@@ -1,8 +1,8 @@
 package com.sandura.quiz.data;
 
-import com.sandura.quiz.repository.CrudQuestionRepository;
 import com.sandura.quiz.model.Answer;
 import com.sandura.quiz.model.Question;
+import com.sandura.quiz.repository.CrudQuestionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,11 @@ public class CsvFileDataReader {
             tmpQuestion = new Question();
             String[] split = questionFromFile.split(",");
             tmpQuestion.setCategory(split[1]);
-            tmpQuestion.setDescription(split[2]);
+            StringBuilder description = new StringBuilder();
+            for (int i = 2; i < split.length; i++) {
+                description.append(split[i]);
+            }
+            tmpQuestion.setDescription(description.toString());
             questions.add(tmpQuestion);
         }
         log.info("Reading Questions data finished. Returning " + questions.size() + " questions.");
@@ -51,11 +55,14 @@ public class CsvFileDataReader {
         while (answersScanner.hasNext()) {
             tmpAnswer = new Answer();
             String answerFromFile = answersScanner.next();
-            //Format of the data: 1,Unit testing,true
+            //Format of the data: 1,true,Unit testing
             String[] answerSplit = answerFromFile.split(",");
             String idOfRelatedQuestion = answerSplit[0];
-            String answerDescription = answerSplit[1];
-            Boolean answerCorrectness = new Boolean(answerSplit[2]);
+            Boolean answerCorrectness = new Boolean(answerSplit[1]);
+            StringBuilder description = new StringBuilder();
+            for (int i = 2; i < answerSplit.length; i++) {
+                description.append(answerSplit[i]);
+            }
             Question relatedQuestion;
             Optional<Question> relateQuestionOptional = crudQuestionRepository.findById(new Integer(idOfRelatedQuestion));
             if (relateQuestionOptional.isPresent()) {
@@ -65,7 +72,7 @@ public class CsvFileDataReader {
             }
             tmpAnswer.setQuestionReference(relatedQuestion);
             tmpAnswer.setCorrectness(answerCorrectness);
-            tmpAnswer.setDescription(answerDescription);
+            tmpAnswer.setDescription(description.toString());
             answers.add(tmpAnswer);
         }
 
