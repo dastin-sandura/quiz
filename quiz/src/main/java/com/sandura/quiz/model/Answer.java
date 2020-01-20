@@ -12,6 +12,7 @@ public class Answer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    //Ignore to prevent infinite reference loops
     @JsonIgnore
     @ManyToOne
     private Question questionReference;
