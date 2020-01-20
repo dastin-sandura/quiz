@@ -13,7 +13,7 @@ public class Quiz {
 
     private String name;
 
-    @OneToMany
+    @ManyToMany
     private List<Question> questionList = new ArrayList<>();
 
     public String getName() {

@@ -14,6 +14,9 @@ public class Question {
 
     private String description;
 
+    @ManyToMany
+    private List<Quiz> quizzes = new ArrayList<>();
+
     @OneToMany
     private List<Answer> answerList = new ArrayList<>();
 

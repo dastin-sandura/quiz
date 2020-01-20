@@ -10,10 +10,21 @@
 <p>At the moment you can:</p>
 
 <h2>Quizzes</h2>
-<div>
-    <a href="/quiz/generate?questionCategories=Java,Tests&quizName=QuizCreatedViaWeb">Generate a quiz from questions
-        about <i>Java</i> and <i>Tests</i> with name <i>QuizCreatedViaWeb</i>.</a>
-</div>
+
+<p>Generate new Quiz</p>
+<form action="/quiz" method="post">
+    Quiz name <input type="text" name="quizName"><br>
+    <p>Select categories of questions which you want to include in the Quiz</p>
+    <input type="checkbox" name="questionCategories" value="Java">Java<br>
+    <input type="checkbox" name="questionCategories" value="Tests">Tests<br>
+    <input type="checkbox" name="questionCategories" value="Spring">Spring<br>
+    <input type="checkbox" name="questionCategories" value="Tomcat">Tomcat<br>
+    <input type="checkbox" name="questionCategories" value="AOP">AOP<br>
+    <p>Select quantity of questions in the quiz. 8 is maximum.</p>
+    <input type="number" name="questionCount"><br>
+
+    <input type="submit" value="Submit">
+</form>
 
 <h2>Questions</h2>
 <div>
@@ -30,6 +41,7 @@
 <div>
     <a href="#"><b>TODO</b> Check all Answers via <i>Hibernate</i> repository.</a>
 </div>
+
 
 </body>
 </html>
