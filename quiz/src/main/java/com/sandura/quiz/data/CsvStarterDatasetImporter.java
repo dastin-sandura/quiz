@@ -13,7 +13,7 @@ import java.io.File;
 @Component
 public class CsvStarterDatasetImporter implements StarterDatasetImporter {
 
-    Logger log = LoggerFactory.getLogger(CsvStarterDatasetImporter.class);
+    private static final Logger log = LoggerFactory.getLogger(CsvStarterDatasetImporter.class);
 
     @Value("${question.data.csv.relative-file-path}")
     private String QUESTIONS_CSV_FILE_DIRECTORY;

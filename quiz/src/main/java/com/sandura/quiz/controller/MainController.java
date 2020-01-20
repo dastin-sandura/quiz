@@ -15,13 +15,13 @@ public class MainController {
     @Autowired
     StarterDatasetImporter startedDatasetImporter;
 
-    private boolean starterDatasetLoaded;
+    private boolean initializationPerformed;
 
     @GetMapping
     public String mainPage() {
-        if (starterDatasetLoaded == false) {
+        if (initializationPerformed == false) {
             startedDatasetImporter.populateDatabaseWithStarterDataset();
-            starterDatasetLoaded = true;
+            initializationPerformed = true;
         }
         return "index";
     }
