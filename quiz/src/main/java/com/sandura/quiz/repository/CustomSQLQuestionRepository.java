@@ -104,4 +104,11 @@ public class CustomSQLQuestionRepository {
 
         return questions;
     }
+
+    public int getQuestionCount() {
+        List<Integer> result = jdbcTemplate.query("select count(1) from question", (rs, rownum) -> {
+            return rs.getInt(1);
+        });
+        return result.get(0);
+    }
 }
