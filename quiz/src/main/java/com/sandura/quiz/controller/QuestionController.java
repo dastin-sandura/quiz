@@ -1,12 +1,10 @@
 package com.sandura.quiz.controller;
 
 import com.sandura.quiz.model.Question;
-import com.sandura.quiz.model.Quiz;
 import com.sandura.quiz.repository.CrudQuestionRepository;
 import com.sandura.quiz.repository.CustomSQLQuestionRepository;
 import com.sandura.quiz.service.AnswerService;
 import com.sandura.quiz.service.QuestionService;
-import com.sun.org.apache.bcel.internal.generic.ARETURN;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -79,6 +78,11 @@ public class QuestionController {
     @GetMapping(path = "count")
     public ResponseEntity<Integer> getQuestionCount() {
         return new ResponseEntity<>(customSQLQuestionRepository.getQuestionCount(), HttpStatus.OK);
+    }
+
+    @GetMapping(path = "random/{count}")
+    public ResponseEntity<List<Question>> getRandomQuestion(@PathVariable int count) {
+        return new ResponseEntity<List<Question>>(customSQLQuestionRepository.getRandomQuestionsFromCategory(count, "Java"), HttpStatus.OK);
     }
 
 }

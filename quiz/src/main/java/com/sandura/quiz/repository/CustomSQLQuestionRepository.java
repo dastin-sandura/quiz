@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Component
 public class CustomSQLQuestionRepository {
@@ -68,7 +65,7 @@ public class CustomSQLQuestionRepository {
         return questions;
     }
 
-    public List<Question> findByCategory(String category) {
+    public List<Question> findQuestionsByCategory(String category) {
         List<Question> questions = new ArrayList();
 
         String sqlWithJoin = "SELECT question.id AS QUESTION_ID, question.category," +
@@ -110,5 +107,49 @@ public class CustomSQLQuestionRepository {
             return rs.getInt(1);
         });
         return result.get(0);
+    }
+
+    public List<Question> getRandomQuestionsFromCategory(int numberOfQuestions, String category) {
+        List<Question> allQuestionsByCategory = findQuestionsByCategory(category);
+
+        Set<Integer> randomQuestionIds = new HashSet<>();
+        int questionCount = allQuestionsByCategory.size();
+
+        while (randomQuestionIds.size() < numberOfQuestions) {
+            Double random = Math.random() * questionCount;
+            Double randomNumber = Math.ceil(random);
+            randomQuestionIds.add(randomNumber.intValue());
+        }
+
+        List<Question> randomQuestions = new ArrayList<>();
+        for (Integer randomQuestionId : randomQuestionIds) {
+            randomQuestions.add(allQuestionsByCategory.get(randomQuestionId));
+        }
+
+        //test of the random number generator
+        double v = Math.random() * questionCount;
+        while (v != questionCount) {
+            v = Math.random() * questionCount;
+            v = Math.ceil(v);
+            if (v > (questionCount - 1))
+                log.info("Searching for the number " + questionCount + " currently got " + v);
+        }
+
+        log.info("Random numbers are " + randomQuestionIds);
+
+//        String replace = randomQuestionIds.toString().replace("[", "").replace("]", "");
+//        String sql = "SELECT * FROM QUESTION WHERE ID IN (" + replace + ") AND CATEGORY = '" + category + "'";
+//        log.info("Executing query: " + sql);
+//        List<Question> randomQuestionsFromDatabase = jdbcTemplate.query(sql, (rs, rowNum) -> {
+//            Question question = new Question();
+//            question.setId(rs.getInt(1));
+//            question.setCategory(rs.getString(2));
+//            question.setDescription(rs.getString(3));
+//            return question;
+//        });
+
+
+        return randomQuestions;
+
     }
 }
