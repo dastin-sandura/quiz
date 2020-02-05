@@ -112,13 +112,32 @@ public class CustomSQLQuestionRepository {
         return result.get(0);
     }
 
-    public List<Question> getRandomQuestionsFromCategory(int numberOfQuestions, String category) {
+    public int getQuestionCountByCategory(String category) {
+        log.info("Counting all questions from category '{}' in the database", category);
+        String sql = "select count(1) from question where category = '" + category + "'";
+        List<Integer> result = jdbcTemplate.query(sql, (rs, rownum) -> {
+            return rs.getInt(1);
+        });
+        Integer questionsCount = result.get(0);
+        log.info("Returning information that there are {} questions from category {} in the database", questionsCount, category);
+        return questionsCount;
+    }
+
+    public List<Question> getRandomQuestionsFromCategory(int requestedNumberOfQuestions, String category) {
+        //TODO Check if there are enough questions in specified category.
+        //TODO If there are not enough questions, return all questions that we can find
+        int questionCountByCategory = getQuestionCountByCategory(category);
+        if (questionCountByCategory < requestedNumberOfQuestions) {
+            requestedNumberOfQuestions = questionCountByCategory;
+            log.info("Changing the number of returned question to {} because there is not enough data to return {} questions.", questionCountByCategory, requestedNumberOfQuestions);
+        }
+        log.info("Searching for {} questions from category {}", requestedNumberOfQuestions, category);
         List<Question> allQuestionsByCategory = findQuestionsByCategory(category);
 
         Set<Integer> randomQuestionIds = new HashSet<>();
         int questionCount = allQuestionsByCategory.size();
 
-        while (randomQuestionIds.size() < numberOfQuestions) {
+        while (randomQuestionIds.size() < requestedNumberOfQuestions) {
             Double random = Math.random() * questionCount;
             Double randomNumber = Math.ceil(random);
             randomQuestionIds.add(randomNumber.intValue());
@@ -150,7 +169,6 @@ public class CustomSQLQuestionRepository {
 //            question.setDescription(rs.getString(3));
 //            return question;
 //        });
-
 
         log.info("Returning {} questions from category {}", randomQuestions.size(), category);
         return randomQuestions;
