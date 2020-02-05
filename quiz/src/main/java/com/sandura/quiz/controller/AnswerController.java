@@ -30,7 +30,7 @@ public class AnswerController {
         return new ResponseEntity<>(allAnswers, HttpStatus.OK);
     }
 
-    @GetMapping(path = "answer/{id}")
+    @GetMapping(path = "{id}")
     public ResponseEntity<Answer> getAnswerById(@PathVariable Integer id) {
         Optional<Answer> answerOptional = answerRepository.findById(id);
         if (!answerOptional.isPresent()) {
