@@ -53,13 +53,17 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- https://spring.io/guides/gs/spring-boot/#_add_production_grade_services -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 		<!-- H2 Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
