@@ -53,7 +53,7 @@ public class QuizController {
         generatedQuiz.setName(quizName);
         List<Question> quizQuestions = new ArrayList<>();
         for (String category : questionCategories.split(",")) {
-            quizQuestions.addAll(customSQLQuestionRepository.findQuestionsByCategory(category));
+            quizQuestions.addAll(customSQLQuestionRepository.getRandomQuestionsFromCategory(questionCount, category));
         }
         generatedQuiz.setQuestionList(quizQuestions);
         crudQuizRepository.save(generatedQuiz);
