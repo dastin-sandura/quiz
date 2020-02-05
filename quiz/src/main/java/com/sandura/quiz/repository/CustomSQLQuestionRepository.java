@@ -66,6 +66,7 @@ public class CustomSQLQuestionRepository {
     }
 
     public List<Question> findQuestionsByCategory(String category) {
+        log.info("Searching for all questions from category {}", category);
         List<Question> questions = new ArrayList();
 
         String sqlWithJoin = "SELECT question.id AS QUESTION_ID, question.category," +
@@ -98,14 +99,16 @@ public class CustomSQLQuestionRepository {
         );
 
         questions.addAll(existingQuestions.values());
-
+        log.info("Returning {} questions from category {}", questions.size(), category);
         return questions;
     }
 
     public int getQuestionCount() {
+        log.info("Counting all questions in the database");
         List<Integer> result = jdbcTemplate.query("select count(1) from question", (rs, rownum) -> {
             return rs.getInt(1);
         });
+        log.info("Returning information that there are {} questions in the database", result.size());
         return result.get(0);
     }
 
@@ -149,6 +152,7 @@ public class CustomSQLQuestionRepository {
 //        });
 
 
+        log.info("Returning {} questions from category {}", randomQuestions.size(), category);
         return randomQuestions;
 
     }
