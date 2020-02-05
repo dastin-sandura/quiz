@@ -35,7 +35,7 @@ public class QuestionController {
     @Autowired
     private CustomSQLQuestionRepository customSQLQuestionRepository;
 
-    @PostMapping(path = "/add")
+    @PostMapping(path = "add")
     public @ResponseBody
     String addNewQuestion(@RequestParam String title, @RequestParam String description) {
         Question n = new Question();
@@ -46,28 +46,28 @@ public class QuestionController {
         return "Saved";
     }
 
-    @GetMapping(path = "/all")
+    @GetMapping(path = "all")
     public @ResponseBody
-    Iterable<Question> getAllQuestions() {
+    ResponseEntity<Iterable<Question>> getAllQuestions() {
         log.info("Returning all questions");
-        return crudQuestionRepository.findAll();
+        return new ResponseEntity<>(crudQuestionRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "/allsql")
+    @GetMapping(path = "allsql")
     public @ResponseBody
-    Iterable<Question> getAllQuestionWithSQL() {
+    ResponseEntity<Iterable<Question>> getAllQuestionWithSQL() {
         log.info("Returning all questions via SQL from JdbcTemplate");
-        return customSQLQuestionRepository.findAll();
+        return new ResponseEntity<>(customSQLQuestionRepository.findAll(), HttpStatus.OK);
 
     }
 
-    @GetMapping(path = "/alltesting")
+    @GetMapping(path = "alltesting")
     public @ResponseBody
-    Set<Question> getQuestionsByCategory(@RequestParam int questionsCount, @RequestParam String category) {
+    ResponseEntity<Set<Question>> getQuestionsByCategory(@RequestParam int questionsCount, @RequestParam String category) {
         ArrayList<String> selectedCategories = new ArrayList<>();
         selectedCategories.add(category);
         customSQLQuestionRepository.getQuestionCount();
-        return questionService.getQuestionsByCategory(questionsCount, selectedCategories);
+        return new ResponseEntity<>(questionService.getQuestionsByCategory(questionsCount, selectedCategories), HttpStatus.OK);
     }
 
     @GetMapping(path = "populate")
