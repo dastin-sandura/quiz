@@ -124,8 +124,6 @@ public class CustomSQLQuestionRepository {
     }
 
     public List<Question> getRandomQuestionsFromCategory(int requestedNumberOfQuestions, String category) {
-        //TODO Check if there are enough questions in specified category.
-        //TODO If there are not enough questions, return all questions that we can find
         int questionCountByCategory = getQuestionCountByCategory(category);
         if (questionCountByCategory < requestedNumberOfQuestions) {
             requestedNumberOfQuestions = questionCountByCategory;
@@ -135,42 +133,21 @@ public class CustomSQLQuestionRepository {
         List<Question> allQuestionsByCategory = findQuestionsByCategory(category);
 
         Set<Integer> randomQuestionIds = new HashSet<>();
-        int questionCount = allQuestionsByCategory.size();
-
+        int numberOfpossibleQuestions = allQuestionsByCategory.size();
         while (randomQuestionIds.size() < requestedNumberOfQuestions) {
-            Double random = Math.random() * questionCount;
-            Double randomNumber = Math.ceil(random);
+            Double random = Math.random() * numberOfpossibleQuestions;
+            Double randomNumber = Math.floor(random);
             randomQuestionIds.add(randomNumber.intValue());
         }
 
+        log.info("Randomized process selected these indices {} out of {} possible.", randomQuestionIds, numberOfpossibleQuestions);
+
         List<Question> randomQuestions = new ArrayList<>();
         for (Integer randomQuestionId : randomQuestionIds) {
-            randomQuestions.add(allQuestionsByCategory.get(randomQuestionId));
+            randomQuestions.add(allQuestionsByCategory.get((randomQuestionId)));
         }
 
-        //test of the random number generator
-        double v = Math.random() * questionCount;
-        while (v != questionCount) {
-            v = Math.random() * questionCount;
-            v = Math.ceil(v);
-            if (v > (questionCount - 1))
-                log.info("Searching for the number " + questionCount + " currently got " + v);
-        }
-
-        log.info("Random numbers are " + randomQuestionIds);
-
-//        String replace = randomQuestionIds.toString().replace("[", "").replace("]", "");
-//        String sql = "SELECT * FROM QUESTION WHERE ID IN (" + replace + ") AND CATEGORY = '" + category + "'";
-//        log.info("Executing query: " + sql);
-//        List<Question> randomQuestionsFromDatabase = jdbcTemplate.query(sql, (rs, rowNum) -> {
-//            Question question = new Question();
-//            question.setId(rs.getInt(1));
-//            question.setCategory(rs.getString(2));
-//            question.setDescription(rs.getString(3));
-//            return question;
-//        });
-
-        log.info("Returning {} questions from category {}", randomQuestions.size(), category);
+        log.info("Returning {} random questions from category {}", randomQuestions.size(), category);
         return randomQuestions;
 
     }
