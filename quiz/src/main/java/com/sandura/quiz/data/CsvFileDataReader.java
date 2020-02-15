@@ -36,6 +36,7 @@ public class CsvFileDataReader {
             String[] split = questionFromFile.split(",");
             tmpQuestion.setCategory(split[1]);
             StringBuilder description = new StringBuilder();
+            //We iterate over all other tokens in the split to handle cases when Description contains commas
             for (int i = 2; i < split.length; i++) {
                 description.append(split[i]);
             }
