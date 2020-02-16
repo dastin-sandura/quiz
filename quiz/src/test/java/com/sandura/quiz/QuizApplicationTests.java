@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -20,6 +21,9 @@ class QuizApplicationTests {
 
     @Autowired
     private MockMvc mvc;
+
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     @Autowired
     private CrudQuizRepository crudQuizRepository;
@@ -51,7 +55,8 @@ class QuizApplicationTests {
 
         //Cleanup
         crudQuizRepository.deleteAll();
+        //Reset sequence, because it used by every table. Without the reset, import of starter data set will fail.
+        jdbcTemplate.execute("ALTER SEQUENCE HIBERNATE_SEQUENCE restart with 1");
     }
-
 
 }
