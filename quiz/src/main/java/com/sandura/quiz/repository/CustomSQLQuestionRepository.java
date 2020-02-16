@@ -69,10 +69,11 @@ public class CustomSQLQuestionRepository {
         log.info("Searching for all questions from category {}", category);
         List<Question> questions = new ArrayList();
 
+        //Doing a LEFT join, so that in case a question has no answer, it is still returned with null answers
         String sqlWithJoin = "SELECT question.id AS QUESTION_ID, question.category," +
                 " question.description as question_description," +
                 " answer.id AS ANSWER_ID, answer.description as answer_description, answer.is_correct " +
-                "FROM QUESTION INNER JOIN answer ON question.id = answer.question_reference_id " +
+                "FROM QUESTION LEFT JOIN answer ON question.id = answer.question_reference_id " +
                 "WHERE question.category = '" + category + "'";
         Map<Integer, Question> existingQuestions = new HashMap<>();
 

@@ -7,24 +7,27 @@
 <body>
 <h1>Quizzes mania</h1>
 <h2>This is a quiz generator!</h2>
+<div>
+    <a href="/">Main page</a>
+    <a href="question">Questions</a>
+    <a href="quiz">Quizzes</a>
+    <a href="answer">Answers</a>
+</div>
 <p>At the moment you can:</p>
 <hr/>
 
 <h2>Generate new Quiz</h2>
 
 <form action="/quiz" method="post">
-    Quiz name <input type="text" name="quizName"><br>
-    <p>Select categories of questions which you want to include in the Quiz</p>
+    Quiz name: <input type="text" name="quizName"><br>
+    <p>Select categories of questions which you want to include in the Quiz: </p>
     <input type="checkbox" name="questionCategories" value="Java">Java<br>
-    <input type="checkbox" name="questionCategories" value="Tests">Tests<br>
     <input type="checkbox" name="questionCategories" value="Spring">Spring<br>
-    <input type="checkbox" name="questionCategories" value="Tomcat">Tomcat<br>
-    <input type="checkbox" name="questionCategories" value="AOP">AOP<br>
-    <p>Select quantity of questions in the quiz. 8 is maximum.</p>
-    <input type="number" name="questionCount" value="2"><br>
+    Select quantity of questions in the quiz: <input type="number" name="questionCount" value="2"><br>
 
     <input type="submit" value="Submit">
 </form>
+
 <hr/>
 <h2>Browse Questions</h2>
 <div>
@@ -37,7 +40,7 @@
     <a href="question/allsql">Check all questions retrieved via JdbcTemplate execution of SQL query.</a>
 </div>
 <div>
-    <a href="question/count">Check registered question count</a>
+    <a href="question/statistics/count">Check registered question count</a>
 </div>
 <div>
     <a href="question/random/5">Get 5 random Java questions</a>

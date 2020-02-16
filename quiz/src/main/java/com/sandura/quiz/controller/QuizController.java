@@ -9,13 +9,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @RequestMapping(path = "quiz")
 public class QuizController {
 
@@ -28,12 +30,13 @@ public class QuizController {
     private CustomSQLQuestionRepository customSQLQuestionRepository;
 
     @GetMapping
-    public ResponseEntity<List<Quiz>> getAllQuizzes() {
+    public String getAllQuizzes(Model model) {
         List<Quiz> allQuizzes = new ArrayList<>();
         for (Quiz quiz : crudQuizRepository.findAll()) {
             allQuizzes.add(quiz);
         }
-        return ResponseEntity.ok(allQuizzes);
+        model.addAttribute("quizzes", allQuizzes);
+        return "quizzes-list";
     }
 
     @GetMapping(path = "{quiz_id}")
@@ -57,7 +60,7 @@ public class QuizController {
         }
         generatedQuiz.setQuestionList(quizQuestions);
         crudQuizRepository.save(generatedQuiz);
-        return new ResponseEntity<Quiz>(generatedQuiz, HttpStatus.OK);
+        return new ResponseEntity<>(generatedQuiz, HttpStatus.OK);
     }
 
 }

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Browse Quizzes</h1>
+<hr/>
+<div>
+    <a href="/">Main page</a>
+</div>
+<h2>Search for quizzes</h2>
+
+<!--TODO an input which is initially empty and which allows for searching a quiz by name-->
+
+<!--TODO a table with all registered quizzes -->
+<p th:if="${#lists.isEmpty(quizzes)}">No data received</p>
+
+<table th:unless="${#lists.isEmpty(quizzes)}">
+    <!-- Header -->
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>question list</th>
+
+    </tr>
+    <!-- Data -->
+    <tr th:each="quiz: ${quizzes}">
+        <td th:text="${quiz.id}"/>
+        <td th:text="${quiz.name}"/>
+        <td th:text="${quiz.questionList}"/>
+
+    </tr>
+</table>
+
+<table>
+
+</table>
+
+
+</body>
+</html>

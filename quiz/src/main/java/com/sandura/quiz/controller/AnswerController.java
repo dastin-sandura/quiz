@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,12 +23,14 @@ public class AnswerController {
     private AnswerRepository answerRepository;
 
     @GetMapping
-    public ResponseEntity<List<Answer>> getAllAnswers() {
+    public String getAllAnswers(Model model) {
         List<Answer> allAnswers = new ArrayList<>();
         for (Answer answer : answerRepository.findAll()) {
             allAnswers.add(answer);
         }
-        return new ResponseEntity<>(allAnswers, HttpStatus.OK);
+
+        model.addAttribute("answers", allAnswers);
+        return "answers-list";
     }
 
     @GetMapping(path = "{id}")

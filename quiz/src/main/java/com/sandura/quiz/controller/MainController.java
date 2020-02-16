@@ -2,6 +2,7 @@ package com.sandura.quiz.controller;
 
 import com.sandura.quiz.data.StarterDatasetImporter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -15,13 +16,14 @@ public class MainController {
     @Autowired
     StarterDatasetImporter startedDatasetImporter;
 
-    private boolean initializationPerformed;
+    @Value("${initialization.import.starterdata}")
+    private boolean shouldImportStarterDataset;
 
     @GetMapping
     public String mainPage() {
-        if (initializationPerformed == false) {
+        if (shouldImportStarterDataset) {
             startedDatasetImporter.populateDatabaseWithStarterDataset();
-            initializationPerformed = true;
+            shouldImportStarterDataset = false;
         }
         return "index";
     }

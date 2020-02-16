@@ -1,106 +1,97 @@
-1,Tests,Which of these are correct types of software tests?
-2,Java,What are default data types available in Java?
-3,Spring,Which annotation tells spring to include a Java class in a Spring Bean (Component)?
-4,Spring,What class is used for executing queries on database (JdbcTemplate)?
-5,Java,What is needed before the method declaration to indicate that this method returns nothing (void)?
-6,Tomcat,What is the name of script that initiates the Tomcat server (start.sh)?
-7,Tomcat,What is the default port for running tomcat (8080)?
-8,AOP,To which item can you attach an aspect in Spring (method)?
-9,Java,What does “System.out.println ( )” specify?
-10,Java,Why String is immutable in java?
-11,Java,Why multiple inheritances are not supported in Java?
-12,Java,How to detect deadlock and fix it?
-13,Java,When a singleton is not singleton in Java?
-14,Java,Difference between noclassdefounderror and classnotfoundexception?
-15,Java,What happens when you place a return statement or System exit () on and try to hold a block? Will that block be executed?
-16,Java,Is it possible to override a static method?
-17,Java,What does 1.0 / 0.0 mean? What does it return? Shall it give any exception? Are there are any compile time errors?
-18,Java,Does Java in any way support several inheritances?
-19,Java,Explain race condition in Java hashmap?
-20,Java,Can we call static method with null object?
-21,Java,Mention the situations when you will prefer to use interfaces and when abstract classes.
-22,Java,How are the source code files named in Java?
-23,Java,Does Java support networking?
-24,Java,Does all property of Immutable Object need to be final?
-25,Java,How does substring () inside String works?
-26,Java,How do you handle error condition while writing a stored procedure or accessing stored procedure from java?
-27,Java,What is Singleton? is it better to make the whole method synchronized or only critical section synchronized?
-28,Java,When can you use variables that are transient?
-29,Java,When do you override hashCode() and equals()?
-30,Java,What will be the problem if you don’t override hashCode() method?
-31,Java,What exactly happens when an object is created in Java?
-32,Java,What is the use of toString() method in Java?
-33,Java,Which two methods you need to implement to use an Object as key in HashMap?
-34,Java,What if an application get multiple classes having main() methods?
-35,Java,Can you compile a Java class successfully without having the main method?
-36,Java,How comes an unreachable object become reachable again  is it at all possible?
-37,Java,Does thread leave object lock when wait() and sleep() methods are called?
-38,Java,Explain what pointers are and elaborate if they can be used in java?
-39,Java,Explain the concept of object cloning and how is this used in java?
-40,Java,What is OutOfMemoryError in Java? How to deal with java.lang.OutOfMemoryError error?
-41,Java,What will happen if you put return statement or System.exit () on try or catch block? Will finally block execute?
-42,Java,What will happen if we put a key object in a HashMap which is already there?
-43,Java,If a method throws NullPointerException in the superclass  can we override it with a method which throws RuntimeException?
-44,Java,What is the difference between StringBuffer and StringBuilder in Java?
-45,Java,How do you create thread-safe Singleton in Java?
-46,Java,When doesn’t Singleton remain Singleton in Java?
-47,Java,Is it possible to load a class by two ClassLoader?
-48,Java,Is it possible for equals() to return false  even if the contents of two Objects are the same?
-49,Java,Why compareTo() should be consistent to equals() method in Java?
-50,Java,Difference between System.exit() and System.halt() method?
-51,Java, Does all property of Immutable Object need to be final in Java?
-52,Java,How does substring () inside String works?
-53,Java,How do you handle error condition while writing a stored procedure or accessing stored procedure from java?
-54,Java,What is difference between Executor.submit() and Executer.execute() method?
-55,Java,What is the difference between factory and abstract factory pattern?
-56,Java,When do you override hashCode() and equals()?
-57,Java,Is it better to synchronize critical section of getInstance() method or whole getInstance() method?
-58,Java,Which two methods you need to implement to use an Object as key in HashMap?
-59,Spring,What is Spring Framework?
-60,Spring,What are some of the important features and advantages of Spring Framework?
-61,Spring,What do you understand by Dependency Injection?
-62,Spring,How do we implement DI in Spring Framework?
-63,Spring,What are the new features in Spring 5?
-64,Spring,What is Spring WebFlux?
-65,Spring,What are the benefits of using Spring Tool Suite?
-66,Spring,Name some of the important Spring Modules?
-67,Spring,What do you understand by Aspect Oriented Programming?
-68,Spring,What is Aspect, Advice, Pointcut, JointPoint and Advice Arguments in AOP?
-69,Spring,What is the difference between Spring AOP and AspectJ AOP?
-70,Spring,What is Spring IoC Container?
-71,Spring,What is a Spring Bean?
-72,Spring,What is the importance of Spring bean configuration file?
-73,Spring,What are different ways to configure a class as Spring Bean?
-74,Spring,What are different scopes of Spring Bean?
-75,Spring,What is Spring Bean life cycle?
-76,Spring,How to get ServletContext and ServletConfig object in a Spring Bean?
-77,Spring,What is Bean wiring and @Autowired annotation?
-78,Spring,What are different types of Spring Bean autowiring?
-79,Spring,Does Spring Bean provide thread safety?
-80,Spring,What is a Controller in Spring MVC?
-81,Spring,What’s the difference between @Component, @Repository & @Service annotations in Spring?
-82,Spring,What is DispatcherServlet and ContextLoaderListener?
-83,Spring,What is ViewResolver in Spring?
-84,Spring,What is a MultipartResolver and when it’s used?
-85,Spring,How to handle exceptions in Spring MVC Framework?
-86,Spring,How to create ApplicationContext in a Java Program?
-87,Spring,Can we have multiple Spring configuration files?
-88,Spring,What is ContextLoaderListener?
-89,Spring,What are the minimum configurations needed to create Spring MVC application?
-90,Spring,How would you relate Spring MVC Framework to MVC architecture?
-91,Spring,How to achieve localization in Spring MVC applications?
-92,Spring,How can we use Spring to create Restful Web Service returning JSON response?
-93,Spring,What are some of the important Spring annotations you have used?
-94,Spring,Can we send an Object as the response of Controller handler method?
-95,Spring,How to upload file in Spring MVC Application?
-96,Spring,How to validate form data in Spring Web MVC Framework?
-97,Spring,What is Spring MVC Interceptor and how to use it?
-98,Spring,What is Spring JdbcTemplate class and how to use it?
-99,Spring,How to use Tomcat JNDI DataSource in Spring Web Application?
-100,Spring,How would you achieve Transaction Management in Spring?
-101,Spring,What is Spring DAO?
-102,Spring,How to integrate Spring and Hibernate Frameworks?
-103,Spring,What is Spring Security?
-104,Spring,How to inject a java.util.Properties into a Spring Bean?
-105,Spring,Name some of the design patterns used in Spring Framework?
-106,Spring,What are some of the best practices for Spring Framework?
+1,Java,Why String is immutable in java?
+2,Java,Why multiple inheritances are not supported in Java?
+3,Java,How to detect deadlock and fix it?
+4,Java,When a singleton is not singleton in Java?
+5,Java,Difference between noclassdefounderror and classnotfoundexception?
+6,Java,What happens when you place a return statement or System exit () on and try to hold a block? Will that block be executed?
+7,Java,Is it possible to override a static method?
+8,Java,What does 1.0 / 0.0 mean? What does it return? Shall it give any exception? Are there are any compile time errors?
+9,Java,Does Java in any way support several inheritances?
+10,Java,Explain race condition in Java hashmap?
+11,Java,Can we call static method with null object?
+12,Java,Mention the situations when you will prefer to use interfaces and when abstract classes.
+13,Java,How are the source code files named in Java?
+14,Java,Does Java support networking?
+15,Java,Does all property of Immutable Object need to be final?
+16,Java,How does substring () inside String works?
+17,Java,How do you handle error condition while writing a stored procedure or accessing stored procedure from java?
+18,Java,What is Singleton? is it better to make the whole method synchronized or only critical section synchronized?
+19,Java,When can you use variables that are transient?
+20,Java,When do you override hashCode() and equals()?
+21,Java,What will be the problem if you don’t override hashCode() method?
+22,Java,What exactly happens when an object is created in Java?
+23,Java,What is the use of toString() method in Java?
+24,Java,Which two methods you need to implement to use an Object as key in HashMap?
+25,Java,What if an application get multiple classes having main() methods?
+26,Java,Can you compile a Java class successfully without having the main method?
+27,Java,How comes an unreachable object become reachable again  is it at all possible?
+28,Java,Does thread leave object lock when wait() and sleep() methods are called?
+29,Java,Explain what pointers are and elaborate if they can be used in java?
+30,Java,Explain the concept of object cloning and how is this used in java?
+31,Java,What is OutOfMemoryError in Java? How to deal with java.lang.OutOfMemoryError error?
+32,Java,What will happen if you put return statement or System.exit () on try or catch block? Will finally block execute?
+33,Java,What will happen if we put a key object in a HashMap which is already there?
+34,Java,If a method throws NullPointerException in the superclass  can we override it with a method which throws RuntimeException?
+35,Java,What is the difference between StringBuffer and StringBuilder in Java?
+36,Java,How do you create thread-safe Singleton in Java?
+37,Java,When doesn’t Singleton remain Singleton in Java?
+38,Java,Is it possible to load a class by two ClassLoader?
+39,Java,Is it possible for equals() to return false  even if the contents of two Objects are the same?
+40,Java,Why compareTo() should be consistent to equals() method in Java?
+41,Java,Difference between System.exit() and System.halt() method?
+42,Java, Does all property of Immutable Object need to be final in Java?
+43,Java,How does substring () inside String works?
+44,Java,How do you handle error condition while writing a stored procedure or accessing stored procedure from java?
+45,Java,What is difference between Executor.submit() and Executer.execute() method?
+46,Java,What is the difference between factory and abstract factory pattern?
+47,Java,When do you override hashCode() and equals()?
+48,Java,Is it better to synchronize critical section of getInstance() method or whole getInstance() method?
+49,Java,Which two methods you need to implement to use an Object as key in HashMap?
+50,Spring,What is Spring Framework?
+51,Spring,What are some of the important features and advantages of Spring Framework?
+52,Spring,What do you understand by Dependency Injection?
+53,Spring,How do we implement DI in Spring Framework?
+54,Spring,What are the new features in Spring 5?
+55,Spring,What is Spring WebFlux?
+56,Spring,What are the benefits of using Spring Tool Suite?
+57,Spring,Name some of the important Spring Modules?
+58,Spring,What do you understand by Aspect Oriented Programming?
+59,Spring,What is Aspect, Advice, Pointcut, JointPoint and Advice Arguments in AOP?
+60,Spring,What is the difference between Spring AOP and AspectJ AOP?
+61,Spring,What is Spring IoC Container?
+62,Spring,What is a Spring Bean?
+63,Spring,What is the importance of Spring bean configuration file?
+64,Spring,What are different ways to configure a class as Spring Bean?
+65,Spring,What are different scopes of Spring Bean?
+66,Spring,What is Spring Bean life cycle?
+67,Spring,How to get ServletContext and ServletConfig object in a Spring Bean?
+68,Spring,What is Bean wiring and @Autowired annotation?
+69,Spring,What are different types of Spring Bean autowiring?
+70,Spring,Does Spring Bean provide thread safety?
+71,Spring,What is a Controller in Spring MVC?
+72,Spring,What’s the difference between @Component, @Repository & @Service annotations in Spring?
+73,Spring,What is DispatcherServlet and ContextLoaderListener?
+74,Spring,What is ViewResolver in Spring?
+75,Spring,What is a MultipartResolver and when it’s used?
+76,Spring,How to handle exceptions in Spring MVC Framework?
+77,Spring,How to create ApplicationContext in a Java Program?
+78,Spring,Can we have multiple Spring configuration files?
+79,Spring,What is ContextLoaderListener?
+80,Spring,What are the minimum configurations needed to create Spring MVC application?
+81,Spring,How would you relate Spring MVC Framework to MVC architecture?
+82,Spring,How to achieve localization in Spring MVC applications?
+83,Spring,How can we use Spring to create Restful Web Service returning JSON response?
+84,Spring,What are some of the important Spring annotations you have used?
+85,Spring,Can we send an Object as the response of Controller handler method?
+86,Spring,How to upload file in Spring MVC Application?
+87,Spring,How to validate form data in Spring Web MVC Framework?
+88,Spring,What is Spring MVC Interceptor and how to use it?
+89,Spring,What is Spring JdbcTemplate class and how to use it?
+90,Spring,How to use Tomcat JNDI DataSource in Spring Web Application?
+91,Spring,How would you achieve Transaction Management in Spring?
+92,Spring,What is Spring DAO?
+93,Spring,How to integrate Spring and Hibernate Frameworks?
+94,Spring,What is Spring Security?
+95,Spring,How to inject a java.util.Properties into a Spring Bean?
+96,Spring,Name some of the design patterns used in Spring Framework?
+97,Spring,What are some of the best practices for Spring Framework?
