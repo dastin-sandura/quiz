@@ -23,13 +23,10 @@ import java.util.Set;
 public class QuestionController {
 
     private static final Logger log = LoggerFactory.getLogger(QuestionController.class);
-
-    @Autowired
-    private CrudQuestionRepository crudQuestionRepository;
-
     @Autowired
     AnswerService answerService;
-
+    @Autowired
+    private CrudQuestionRepository crudQuestionRepository;
     @Autowired
     private QuestionService questionService;
 
@@ -65,7 +62,6 @@ public class QuestionController {
     public ResponseEntity<Iterable<Question>> getAllQuestionWithSQL() {
         log.info("Returning all questions via SQL from JdbcTemplate");
         return new ResponseEntity<>(customSQLQuestionRepository.findAll(), HttpStatus.OK);
-
     }
 
     @GetMapping(path = "/category/{category}/{questionsCount}")

@@ -56,7 +56,6 @@ public class CsvFileDataReader {
         while (answersScanner.hasNext()) {
             tmpAnswer = new Answer();
             String answerFromFile = answersScanner.next();
-            //Format of the data: 1,true,Unit testing
             String[] answerSplit = answerFromFile.split(",");
             String idOfRelatedQuestion = answerSplit[0];
             Boolean answerCorrectness = new Boolean(answerSplit[1]);

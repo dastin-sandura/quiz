@@ -21,11 +21,11 @@ public class Answer {
 
     private Boolean isCorrect;
 
-    public Answer (){
+    public Answer() {
 
     }
 
-    public Answer (String description, Boolean isCorrect) {
+    public Answer(String description, Boolean isCorrect) {
         this.description = description;
         this.isCorrect = isCorrect;
     }
