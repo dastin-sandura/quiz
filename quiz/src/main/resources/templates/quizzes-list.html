@@ -10,11 +10,7 @@
 <div>
     <a href="/">Main page</a>
 </div>
-<h2>Search for quizzes</h2>
 
-<!--TODO an input which is initially empty and which allows for searching a quiz by name-->
-
-<!--TODO a table with all registered quizzes -->
 <p th:if="${#lists.isEmpty(quizzes)}">No data received</p>
 
 <table th:unless="${#lists.isEmpty(quizzes)}">
