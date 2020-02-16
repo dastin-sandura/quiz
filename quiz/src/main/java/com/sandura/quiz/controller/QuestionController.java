@@ -79,10 +79,10 @@ public class QuestionController {
         return new ResponseEntity<>(customSQLQuestionRepository.getQuestionCount(), HttpStatus.OK);
     }
 
-    @GetMapping(path = "random/{count}")
+    @GetMapping(path = "random/{category}/{count}")
     @ResponseBody
-    public ResponseEntity<List<Question>> getRandomQuestion(@PathVariable int count) {
-        return new ResponseEntity<>(customSQLQuestionRepository.getRandomQuestionsFromCategory(count, "Java"), HttpStatus.OK);
+    public ResponseEntity<List<Question>> getRandomQuestion(@PathVariable int count, @PathVariable String category) {
+        return new ResponseEntity<>(customSQLQuestionRepository.getRandomQuestionsFromCategory(count, category), HttpStatus.OK);
     }
 
 }
